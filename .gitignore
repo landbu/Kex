@@ -1,3 +1,5 @@
 .vscode
-data
 _pycache_
+data/
+networks/
+results/
