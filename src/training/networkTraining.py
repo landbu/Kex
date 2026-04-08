@@ -3,25 +3,23 @@ import torch
 import torch.nn as nn
 from torchvision import datasets, transforms
 
-from architectures import LeNet, SmallDense1, SmallDense2
-
 # Transform used for data
 transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize((0.5, ), (0.5, ))
 ])
 
-def trainModel(model: nn.Module, numEpochs: int, device: torch.device):
+def trainNetwork(network: nn.Module, numEpochs: int, device: torch.device) -> list[float]:
     # Load the dataset for training
     trainingSet = datasets.MNIST(root = "./data", train = True, transform = transform, download = True)
     trainingLoader = torch.utils.data.DataLoader(dataset = trainingSet, batch_size = 16, shuffle = True)
 
-    # Train the specified model on the dataset
-    model.to(device)
-    model.train()
+    # Train the specified network on the dataset
+    network.to(device)
+    network.train()
 
     lossFunction = nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr = 0.001)
+    optimizer = torch.optim.Adam(network.parameters(), lr = 0.001)
 
     durationPerEpoch = []
 
@@ -34,7 +32,7 @@ def trainModel(model: nn.Module, numEpochs: int, device: torch.device):
 
             optimizer.zero_grad()
             
-            outputs = model(images)
+            outputs = network(images)
             loss = lossFunction(outputs, labels)
             loss.backward()
             optimizer.step()
@@ -45,6 +43,6 @@ def trainModel(model: nn.Module, numEpochs: int, device: torch.device):
 
     return durationPerEpoch
 
-# Save the model
-def saveModel(model: nn.Module, filename: str):
-    torch.save(obj = model.state_dict(), f = f"networks/{filename}.pth")
+# Save the network
+def saveNetwork(network: nn.Module, filename: str):
+    torch.save(obj = network.state_dict(), f = f"networks/{filename}.pth")
