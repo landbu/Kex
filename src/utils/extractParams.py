@@ -6,12 +6,12 @@ import torch.nn as nn
 # Inputs and outputs are assumed to be ordered in ascending order by
 # 1: channel, 2: height, 3: width
 
-def extractParams(model: nn.Module, inputShape: tuple[int, int, int]):
-    parameters = []             # weights and biases of the model, elements are (W^(n), b^(n))
+def extractParams(network: nn.Module, inputShape: tuple[int, int, int]):
+    parameters = []             # weights and biases of the network, elements are (W^(n), b^(n))
     outputShape = inputShape    # output from input layer (perhaps unintuitive notation)
     W = None
     b = None
-    for layer in model.children():
+    for layer in network.children():
         W_currentLayer = None
         b_currentLayer = None
 
@@ -38,7 +38,7 @@ def extractParams(model: nn.Module, inputShape: tuple[int, int, int]):
             W = W_currentLayer @ W
             b = W_currentLayer @ b + b_currentLayer
 
-    # Saves final transformation if model does not end with ReLU
+    # Saves final transformation if network does not end with ReLU
     if W is not None and b is not None:
         parameters.append((W, b))
 

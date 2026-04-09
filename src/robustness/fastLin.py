@@ -1,27 +1,35 @@
 import numpy as np
 import time
-import torch
-from torchvision import datasets
 
-def fastLin(weights, biases, originalClass, targetClass, input, p, epsilon_0: float, tolerance: float = 1e-6, maxItersExponential: int = 20, maxItersBinary: int = 40):
-    m = len(weights)
-    lastWeight = weights[-1]
-    weights[-1] = (lastWeight[originalClass, :] - lastWeight[targetClass, :]).reshape(1, -1)
+def fastLin(weights, biases, x0, pNorm, epsilon0: float, originalClass: int, targetClass: int = None, tolerance: float = 1e-6, maxItersExponential: int = 20, maxItersBinary: int = 40):
+    # Copies parameters to avoid modifying them permanently
+    weightsCopy = weights.copy()
+    biasesCopy = biases.copy()
+    
+    m = len(weightsCopy)
+
+    if targetClass != None:
+        lastWeight = weightsCopy[-1]
+        weightsCopy[-1] = (lastWeight[originalClass, :] - lastWeight[targetClass, :]).reshape(1, -1)
+        lastBias = biasesCopy[-1]
+        biasesCopy[-1] = lastBias[originalClass] - lastBias[targetClass]
+    else:
+        raise NotImplementedError("Total fastLin not yet implemented")
 
     # Exponential search for unsafe epsilon
     startTime = time.perf_counter()
 
     epsilonLow = 0.0
-    epsilonHigh = epsilon_0
+    epsilonHigh = epsilon0
     numIters = 0
     while numIters < maxItersExponential:
         lowerBounds = [None] * (m + 1)
         upperBounds = [None] * (m + 1)
 
-        lowerBounds[0] = np.full(len(input), -np.inf)
-        upperBounds[0] = np.full(len(input), np.inf)
+        lowerBounds[0] = np.full(len(x0), -np.inf)
+        upperBounds[0] = np.full(len(x0), np.inf)
         for k in range(1, m + 1):
-            lowerBounds_k, upperBounds_k = computeTwoSideBounds(weights, biases, input, epsilonHigh, p, lowerBounds, upperBounds, k)
+            lowerBounds_k, upperBounds_k = computeTwoSideBounds(weightsCopy, biasesCopy, x0, epsilonHigh, pNorm, lowerBounds, upperBounds, k)
             lowerBounds[k] = lowerBounds_k
             upperBounds[k] = upperBounds_k
 
@@ -50,10 +58,10 @@ def fastLin(weights, biases, originalClass, targetClass, input, p, epsilon_0: fl
         lowerBounds = [None] * (m + 1)
         upperBounds = [None] * (m + 1)
 
-        lowerBounds[0] = np.full(len(input), -np.inf)
-        upperBounds[0] = np.full(len(input), np.inf)
+        lowerBounds[0] = np.full(len(x0), -np.inf)
+        upperBounds[0] = np.full(len(x0), np.inf)
         for k in range(1, m + 1):
-            lowerBounds_k, upperBounds_k = computeTwoSideBounds(weights, biases, input, epsilon, p, lowerBounds, upperBounds, k)
+            lowerBounds_k, upperBounds_k = computeTwoSideBounds(weightsCopy, biasesCopy, x0, epsilon, pNorm, lowerBounds, upperBounds, k)
             lowerBounds[k] = lowerBounds_k
             upperBounds[k] = upperBounds_k
 
