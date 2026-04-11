@@ -6,7 +6,7 @@ from torchvision import datasets, transforms
 # Transform used for data
 transform = transforms.Compose([
     transforms.ToTensor(),
-    #transforms.Normalize((0.5, ), (0.5, ))
+    #transforms.Normalize((0.5, ), (0.5, ))  # Transforms [0, 1] to [-1, 1]
 ])
 
 def trainNetwork(network: nn.Module, numEpochs: int, device: torch.device) -> list[float]:

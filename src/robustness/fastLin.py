@@ -26,8 +26,8 @@ def fastLin(weights, biases, x0, pNorm, epsilon0: float, originalClass: int, tar
         lowerBounds = [None] * (m + 1)
         upperBounds = [None] * (m + 1)
 
-        lowerBounds[0] = np.full(len(x0), -np.inf)
-        upperBounds[0] = np.full(len(x0), np.inf)
+        lowerBounds[0] = np.full(len(x0), 0)
+        upperBounds[0] = np.full(len(x0), 1)
         for k in range(1, m + 1):
             lowerBounds_k, upperBounds_k = computeTwoSideBounds(weightsCopy, biasesCopy, x0, epsilonHigh, pNorm, lowerBounds, upperBounds, k)
             lowerBounds[k] = lowerBounds_k
@@ -87,7 +87,7 @@ def fastLin(weights, biases, x0, pNorm, epsilon0: float, originalClass: int, tar
     return epsilonLow, exponentialSearchTime, binarySearchTime
 
 
-def computeTwoSideBounds(W, b, x_0, epsilon, p, LB, UB, m): # m is current layer
+def computeTwoSideBounds(W, b, x0, epsilon, pNorm, LB, UB, m): # m is current layer
     # Step 1: Creates matrices A^(k), T^(k), H^(k)
     
     # W[0] = W^(1) ... W[m-1] = W^(m)
@@ -158,20 +158,21 @@ def computeTwoSideBounds(W, b, x_0, epsilon, p, LB, UB, m): # m is current layer
     gammaL = np.zeros(n_m)
     gammaU = np.zeros(n_m)
 
-    if p == 1: q = np.inf
-    elif p == 2: q = 2
-    elif p == np.inf: q = 1
+    if pNorm == 1: qNorm = np.inf
+    elif pNorm == 2: qNorm = 2
+    elif pNorm == np.inf: qNorm = 1
+    else: raise NotImplementedError(f"pNorm = {pNorm} not implemented")
 
     for j in range(n_m):
         muPlus[j] = 0
         muMinus[j] = 0
-        nu[j] = A[0][j, :] @ x_0 + b[m - 1][j]
+        nu[j] = A[0][j, :] @ x0 + b[m - 1][j]
         for k in range(1, m):
             muPlus[j] -= A[k][j, :] @ T[k][:, j]
             muMinus[j] -= A[k][j, :] @ H[k][:, j]
             nu[j] += A[k][j, :] @ b[k - 1]
 
-        gammaL[j] = muMinus[j] + nu[j] - epsilon * np.linalg.norm(A[0][j, :], q)
-        gammaU[j] = muPlus[j] + nu[j] + epsilon * np.linalg.norm(A[0][j, :], q)
+        gammaL[j] = muMinus[j] + nu[j] - epsilon * np.linalg.norm(A[0][j, :], qNorm)
+        gammaU[j] = muPlus[j] + nu[j] + epsilon * np.linalg.norm(A[0][j, :], qNorm)
 
     return gammaL, gammaU
