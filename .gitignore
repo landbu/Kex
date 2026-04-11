@@ -4,3 +4,4 @@ data/
 networks/
 results/
 *.pyc
+*.ilp

@@ -46,7 +46,7 @@ def extractParams(network: nn.Module, inputShape: tuple[int, int, int]):
 
 def linearToMatrixForm(layer: nn.Linear):
     W = layer.weight.detach().numpy()
-    b = layer.bias.detach().unsqueeze(1).numpy()
+    b = layer.bias.detach().numpy()
 
     return W, b
 
@@ -83,7 +83,7 @@ def convToMatrixForm(layer: nn.Conv2d, inputShape: tuple[int, int, int]):
 
     # Setting up matrix W and vector b
     W = np.zeros((C_out * outputHeight * outputWidth, C_in * inputHeight * inputWidth))
-    b = np.zeros((C_out * outputHeight * outputWidth, 1))
+    b = np.zeros(C_out * outputHeight * outputWidth)
     weight = layer.weight.detach()
     bias = layer.bias.detach()
 
@@ -137,7 +137,7 @@ def poolToMatrixForm(layer: nn.AvgPool2d, inputShape: tuple[int, int, int]):
 
     # Setting up matrix W and zero vector b
     W = np.zeros((C * outputHeight * outputWidth, C * inputHeight * inputWidth))
-    b = np.zeros((C * outputHeight * outputWidth, 1))
+    b = np.zeros(C * outputHeight * outputWidth)
     scale = 1 / (kernelHeight * kernelWidth)
 
     # Gets matrix elements by looping over kernel matrix for each output
