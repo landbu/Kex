@@ -1,20 +1,20 @@
 import numpy as np
 import time
 
-def fastLin(weights, biases, x0, pNorm, epsilon0: float, originalClass: int, targetClass: int = None, tolerance: float = 1e-6, maxItersExponential: int = 20, maxItersBinary: int = 40):
+def fastLin(weights, biases, x0, pNorm, epsilon0: float, originalClass: int, targetClasses: list[int], tolerance: float = 1e-6, maxItersExponential: int = 20, maxItersBinary: int = 40):
+    if isinstance(targetClasses, int):
+        targetClasses = [targetClasses]
+    
     # Copies parameters to avoid modifying them permanently
     weightsCopy = weights.copy()
     biasesCopy = biases.copy()
     
     m = len(weightsCopy)
 
-    if targetClass != None:
-        lastWeight = weightsCopy[-1]
-        weightsCopy[-1] = (lastWeight[originalClass, :] - lastWeight[targetClass, :]).reshape(1, -1)
-        lastBias = biasesCopy[-1]
-        biasesCopy[-1] = np.array([lastBias[originalClass] - lastBias[targetClass]])
-    else:
-        raise NotImplementedError("Total fastLin not yet implemented")
+    lastWeight = weightsCopy[-1]
+    weightsCopy[-1] = lastWeight[originalClass, :] - lastWeight[targetClasses, :]
+    lastBias = biasesCopy[-1]
+    biasesCopy[-1] = np.array([lastBias[originalClass] - lastBias[targetClasses]]).reshape(-1)
 
     # Exponential search for unsafe epsilon
     startTime = time.perf_counter()
@@ -33,7 +33,7 @@ def fastLin(weights, biases, x0, pNorm, epsilon0: float, originalClass: int, tar
             lowerBounds[k] = lowerBounds_k
             upperBounds[k] = upperBounds_k
 
-        if lowerBounds[m] > 0:
+        if np.any(lowerBounds[m] > 0):
             # epsilon is a certified lower bound, increase using exponential search procedure
             epsilonHigh *= 2
         else:
@@ -65,7 +65,7 @@ def fastLin(weights, biases, x0, pNorm, epsilon0: float, originalClass: int, tar
             lowerBounds[k] = lowerBounds_k
             upperBounds[k] = upperBounds_k
 
-        if lowerBounds[m] > 0:
+        if np.any(lowerBounds[m] > 0):
             # epsilon is a certified lower bound, update binary search
             epsilonLow = epsilon
         else:
