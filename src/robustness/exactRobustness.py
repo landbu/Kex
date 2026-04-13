@@ -2,40 +2,55 @@ import numpy as np
 import time
 
 from robustness.fastLin import computeTwoSideBounds
+from robustness.fastLin import fastLin
 from robustness.bigM import bigM
 
-def exactRobustness(weights, biases, x0, pNorm, epsilon0: float, originalClass: int, targetClass: int):
-    weightsCopy = weights.copy()
-    biasesCopy = biases.copy()
-    
-    numLayers = len(weightsCopy)
+def exactRobustness(weights, biases, x0, pNorm, epsilon0: float, originalClass: int, targetClasses: list[int], maxIters: int = 5):
+    if isinstance(targetClasses, int):
+        targetClasses = [targetClasses]
 
-    # Saves code for possible later use
-    # if targetClass != None:
-    #     lastWeight = weightsCopy[-1]
-    #     weightsCopy[-1] = (lastWeight[originalClass, :] - lastWeight[targetClass, :]).reshape(1, -1)
-    #     lastBias = biasesCopy[-1]
-    #     biasesCopy[-1] = lastBias[originalClass] - lastBias[targetClass]
-    # else:
-    #     raise NotImplementedError("Total exact robustness not yet implemented")
-    
-    # TODO - Implement automatic search for feasible epsilon
-    
+    numLayers = len(weights)
+
     startTime = time.perf_counter()
 
-    maxEpsilon = epsilon0
-    
-    lowerBounds = [None] * (numLayers + 1)
-    upperBounds = [None] * (numLayers + 1)
+    epsilons = []
+    adversarialImages = []
 
-    lowerBounds[0] = np.full(len(x0), 0)
-    upperBounds[0] = np.full(len(x0), 1)
-    for l in range(1, numLayers + 1):
-        lowerBounds_l, upperBounds_l = computeTwoSideBounds(weights = weightsCopy, biases = biasesCopy, x0 = x0, epsilon = maxEpsilon, pNorm = pNorm, LB = lowerBounds, UB = upperBounds, m = l)
-        lowerBounds[l] = lowerBounds_l
-        upperBounds[l] = upperBounds_l
+    # Solves the big-M formulation for each targetClass
+    for targetClass in targetClasses:
+        certifiedEpsilon, _, _ = fastLin(weights = weights, biases = biases, x0 = x0, pNorm = pNorm, epsilon0 = epsilon0, originalClass = originalClass, targetClasses = targetClasses, tolerance = 0.01)
+        maxEpsilon = certifiedEpsilon * 3
+        
+        # Gradually doubles the upper bound of epsilon until we find the exact epsilon
+        numIters = 0
+        while numIters < maxIters:
+            lowerBounds = [None] * (numLayers + 1)
+            upperBounds = [None] * (numLayers + 1)
 
-    epsilon, adversarialImage = bigM(weights = weightsCopy, biases = biasesCopy, x0 = x0, pNorm = pNorm, maxEpsilon = maxEpsilon, originalClass = originalClass, targetClass = targetClass, lowerBounds = lowerBounds, upperBounds = upperBounds)
+            lowerBounds[0] = np.full(len(x0), 0)
+            upperBounds[0] = np.full(len(x0), 1)
+            for l in range(1, numLayers + 1):
+                lowerBounds_l, upperBounds_l = computeTwoSideBounds(weights = weights, biases = biases, x0 = x0, epsilon = maxEpsilon, pNorm = pNorm, LB = lowerBounds, UB = upperBounds, m = l)
+                lowerBounds[l] = lowerBounds_l
+                upperBounds[l] = upperBounds_l
+
+            epsilon, adversarialImage = bigM(weights = weights, biases = biases, x0 = x0, pNorm = pNorm, maxEpsilon = maxEpsilon, originalClass = originalClass, targetClass = targetClass, lowerBounds = lowerBounds, upperBounds = upperBounds)
+
+            if epsilon is not None:
+                break
+            
+            maxEpsilon *= 2
+            numIters += 1
+            if numIters == maxIters:
+                print("Stopping exponential search for exact robustness: reached maximum iterations")
+                break
+
+        epsilons.append(epsilon)
+        adversarialImages.append(adversarialImages)
+
+    minIndex = np.argmin(epsilons)
+    epsilon = epsilons[minIndex]
+    adversarialImage = adversarialImages[minIndex]
 
     stopTime = time.perf_counter()
     searchTime = stopTime - startTime

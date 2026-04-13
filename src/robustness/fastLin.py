@@ -42,7 +42,7 @@ def fastLin(weights, biases, x0, pNorm, epsilon0: float, originalClass: int, tar
 
         numIters += 1
         if numIters == maxItersExponential:
-            print("Stopping exponential search: reached maximum iterations")
+            print("Stopping exponential search for Fast-Lin: reached maximum iterations")
             break
     
     stopTime = time.perf_counter()
@@ -65,7 +65,7 @@ def fastLin(weights, biases, x0, pNorm, epsilon0: float, originalClass: int, tar
             lowerBounds[k] = lowerBounds_k
             upperBounds[k] = upperBounds_k
 
-        if np.any(lowerBounds[m] > 0):
+        if np.all(lowerBounds[m] > 0):
             # epsilon is a certified lower bound, update binary search
             epsilonLow = epsilon
         else:
@@ -73,12 +73,11 @@ def fastLin(weights, biases, x0, pNorm, epsilon0: float, originalClass: int, tar
             epsilonHigh = epsilon
         
         if (epsilonHigh - epsilonLow) < tolerance:
-            print("Stopping binary search: enough accuracy achieved")
             break
 
         numIters += 1
         if numIters == maxItersBinary:
-            print("Stopping binary search: reached maximum iterations")
+            print("Stopping binary search for Fast-Lin: reached maximum iterations")
             break
 
     stopTime = time.perf_counter()
