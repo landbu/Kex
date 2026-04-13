@@ -48,7 +48,7 @@ def bigM(weights, biases, x0, pNorm, maxEpsilon: float, originalClass: int, targ
         layerShape = (n_l, )
 
         x[l] = model.addMVar(shape = layerShape, lb = lowerBounds[l], ub = upperBounds[l], vtype = GRB.CONTINUOUS)
-        z[l] = model.addMVar(shape = layerShape, lb = 0, ub = upperBounds[l], vtype = GRB.CONTINUOUS)
+        z[l] = model.addMVar(shape = layerShape, lb = 0, ub = np.maximum(0, upperBounds[l]), vtype = GRB.CONTINUOUS)
         lambdas[l] = model.addMVar(shape = layerShape, vtype = GRB.BINARY)
 
     # Output layer
@@ -110,6 +110,7 @@ def bigM(weights, biases, x0, pNorm, maxEpsilon: float, originalClass: int, targ
         
 
     # Different classification constraints
+
     model.addConstr(outputLayer[targetClass] >= outputLayer[originalClass])
 
     # Objective function
@@ -128,7 +129,7 @@ def bigM(weights, biases, x0, pNorm, maxEpsilon: float, originalClass: int, targ
         # for v in model.getVars():
         #     if v.IISLB or v.IISUB:
         #         print(v.VarName, v.lb, v.ub)
-        return None
+        return None, None
 
     # Should return minimal epsilon and the corresponding adversarial image
     return epsilon.X, inputLayer.X
