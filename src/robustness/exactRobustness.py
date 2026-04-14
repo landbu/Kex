@@ -1,9 +1,9 @@
 import numpy as np
 import time
 
-from robustness.fastLin import computeTwoSideBounds
-from robustness.fastLin import fastLin
-from robustness.bigM import bigM
+from src.robustness.fastLin import computeTwoSideBounds
+from src.robustness.fastLin import fastLin
+from src.robustness.bigM import bigM
 
 def exactRobustness(weights, biases, x0, pNorm, epsilon0: float, originalClass: int, targetClasses: list[int], maxIters: int = 5):
     if isinstance(targetClasses, int):

@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from torchvision import datasets
 
-from training.networkTraining import transform
+from src.training.networkTraining import transform
 
 def testNetwork(network: nn.Module) -> tuple[dict[int, int], dict[int, int]]:
     # Load the dataset for testing

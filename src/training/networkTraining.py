@@ -44,5 +44,5 @@ def trainNetwork(network: nn.Module, numEpochs: int, device: torch.device) -> li
     return durationPerEpoch
 
 # Save the network
-def saveNetwork(network: nn.Module, filename: str):
-    torch.save(obj = network.state_dict(), f = f"networks/{filename}.pth")
+def saveNetwork(network: nn.Module, name: str):
+    torch.save(obj = network.state_dict(), f = f"networks/{name}.pth")

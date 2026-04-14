@@ -1,6 +1,6 @@
-from architectures.networkArchitectures import networkRegistry
-from testing.networkTesting import testNetwork
-from utils.loadNetwork import loadNetwork
+from src.architectures.networkArchitectures import networkRegistry
+from src.testing.networkTesting import testNetwork
+from src.utils.loadNetwork import loadNetwork
 
 # Test the networks
 if __name__ == "__main__":

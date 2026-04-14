@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 
-from architectures.networkArchitectures import networkRegistry
+from src.architectures.networkArchitectures import networkRegistry
 
 def loadNetwork(name: str) -> nn.Module:
     NetworkEntry = networkRegistry[name]
