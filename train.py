@@ -7,14 +7,14 @@ from src.training.networkTraining import trainNetwork, saveNetwork
 # Train the networks
 if __name__ == "__main__":
     currentDevice = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
-    epochs = 3
+    epochs = 5
     saveDirectory = Path("networks")
     FORCE_RETRAIN = False
 
     for name, NetworkEntry in networkRegistry.items():
         fileName = f"{name}.pth"
         filePath = saveDirectory / fileName
-        if filePath.exists():
+        if filePath.exists() and not FORCE_RETRAIN:
             print(f"Skipping {name}, network already saved")
             continue
 
