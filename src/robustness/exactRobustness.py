@@ -5,7 +5,7 @@ from src.robustness.fastLin import computeTwoSideBounds
 from src.robustness.fastLin import fastLin
 from src.robustness.bigM import bigM
 
-def exactRobustness(weights, biases, x0, pNorm, epsilon0: float, originalClass: int, targetClasses: list[int], maxIters: int = 5):
+def exactRobustness(weights, biases, x0, pNorm, epsilon0: float, originalClass: int, targetClasses: list[int], maxIters: int = 20):
     if isinstance(targetClasses, int):
         targetClasses = [targetClasses]
 
