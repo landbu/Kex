@@ -6,13 +6,12 @@ from torchvision import datasets, transforms
 # Transform used for data
 transform = transforms.Compose([
     transforms.ToTensor(),
-    #transforms.Normalize((0.5, ), (0.5, ))  # Transforms [0, 1] to [-1, 1]
 ])
 
 def trainNetwork(network: nn.Module, numEpochs: int, device: torch.device) -> list[float]:
     # Load the dataset for training
     trainingSet = datasets.MNIST(root = "./data", train = True, transform = transform, download = True)
-    trainingLoader = torch.utils.data.DataLoader(dataset = trainingSet, batch_size = 16, shuffle = True)
+    trainingLoader = torch.utils.data.DataLoader(dataset = trainingSet, batch_size = 64, shuffle = True)
 
     # Train the specified network on the dataset
     network.to(device)

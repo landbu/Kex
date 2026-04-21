@@ -2,7 +2,7 @@ import gurobipy as gp
 from gurobipy import GRB
 import numpy as np
 from tqdm import tqdm
-from utils.other_functions import *
+from src.robustness.other_functions import *
 
 def robustness_setup(X, Y, bridge_model, g_model=None, max_d=1.0): # Make it do a copy instead
     """
@@ -76,7 +76,7 @@ def standard_robustness_test(bridge_model, g_model=None, print_var_count=False):
     if g_model.Status == GRB.OPTIMAL: print("Optimal solution found!")
     else:
         print("No solution found")
-        return
+        return None, None, None
     obj_value = g_model.ObjVal
     best_adv_input = input_vars.X
     classification = np.argmax(output_vars.X)
@@ -84,27 +84,35 @@ def standard_robustness_test(bridge_model, g_model=None, print_var_count=False):
     return obj_value, best_adv_input, classification
 
 
-def big_robustness_test(bridge_model, samples, labels, viszualize=[], max_d=1.0):
+def big_robustness_test(bridge_model, samples, labels, max_d=1.0):
     # Retruns dist mean, variance, and max
     original_model = bridge_model.gurobi_model
     dists = np.zeros_like(labels, dtype=np.float32)
+    classifications = np.zeros_like(labels, dtype=np.float32)
+    adv_inputs = np.zeros_like(labels, dtype=np.float32)
     for i in tqdm(range(len(samples))):
         model_copy = original_model.copy()
         robustness_setup(samples[i], labels[i], bridge_model, g_model=model_copy,max_d=max_d)
         dist, adv_input, classification = standard_robustness_test(bridge_model, g_model=model_copy)
         dists[i] = dist
-    
-    return np.mean(dists), np.var(dists), np.max(dists)
+        classifications[i] = classification
+        adv_inputs[i] = adv_input
+    return dists, adv_inputs, classifications
 
 
-def feature_selection(bridge_model, Y, mode="independent"): # Döp om
+def feature_selection(bridge_model, Y, g_model=None, mode="independent"): # Döp om
     # mode: mean relavtive, second place relative,independent
     # mean relative means the one which maximizes the distances to the mean
     # independent means the one which makes it as big as possible
     # second place relative means the one which maximizes the distance to the second biggest
-    input_vars = bridge_model.input_vars
-    output_vars = bridge_model.output_vars
-    g_model = bridge_model.gurobi_model
+
+    if g_model is None:
+        g_model = bridge_model.gurobi_model
+        output_vars = bridge_model.output_vars
+        input_vars = bridge_model.input_vars
+    else:
+        output_vars = get_MVars(g_model,(10,), "output")
+        input_vars = get_MVars(g_model,bridge_model.input_layer.input_shape, "input")
     
     if mode == "mean relative":
         g_model.setObjective(output_vars[Y] - output_vars.sum()/bridge_model.output_layer.output_width, GRB.MAXIMIZE)

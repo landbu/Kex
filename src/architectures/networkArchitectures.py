@@ -3,13 +3,6 @@ import torch
 import torch.nn as nn
 from typing import Type
 
-# Current tags
-# "dense", for all dense neural networks
-# "CNN", for all CNNs
-# "constantWidth", for all networks with constant width for each layer
-# "20width", for all networks with a constant width of 20
-# "3layers", for all networks with three layers
-# "60neurons", for all networks with 60 neurons (feasible for big-M)
 
 @dataclass
 class NetworkEntry:
@@ -17,268 +10,76 @@ class NetworkEntry:
     tags: set[str]
 
 networkRegistry: dict[str, NetworkEntry] = {}
+
 def registerNetwork(*tags: str):
-    def registerNetwork(NetworkClass: Type[nn.Module]):
+    def registerNetworkInner(NetworkClass: Type[nn.Module]):
         name = NetworkClass.__name__
-        networkRegistry[name] = NetworkEntry(NetworkClass = NetworkClass, tags = set(tags))
+        networkRegistry[name] = NetworkEntry(NetworkClass=NetworkClass, tags=set(tags))
         return NetworkClass
-    return registerNetwork
+    return registerNetworkInner
 
 
-########## Dense neural networks ##########
+def make_registered_mlp(name, width, depth):
+    class GeneratedMLP(nn.Module):
+        def __init__(self):
+            super().__init__()
 
-##### Constant number of hidden neurons (60) #####
+            self.dense1 = nn.Linear(28 * 28, width)
+            self.relu1 = nn.ReLU()
 
-# 28 x 28 -> 60 -> 10
-@registerNetwork("dense", "constantWidth", "60neurons")
-class Dense1x60(nn.Module):
-    def __init__(self):
-        super(Dense1x60, self).__init__()
-        self.dense1 = nn.Linear(in_features = 1 * 28 * 28, out_features = 60)
-        self.relu1 = nn.ReLU()
-        self.dense2 = nn.Linear(in_features = 60, out_features = 10)
+            for i in range(2, depth + 1):
+                setattr(self, f"dense{i}", nn.Linear(width, width))
+                setattr(self, f"relu{i}", nn.ReLU())
 
-    def forward(self, x: torch.Tensor):
-        x = x.view(-1, 1 * 28 * 28)
-        x = self.relu1(self.dense1(x))
-        x = self.dense2(x)
-        return x
+            setattr(self, f"dense{depth+1}", nn.Linear(width, 10))
 
-# 28 x 28 -> 30 -> 30 -> 10
-@registerNetwork("dense", "constantWidth", "60neurons")
-class Dense2x30(nn.Module):
-    def __init__(self):
-        super(Dense2x30, self).__init__()
-        self.dense1 = nn.Linear(in_features = 1 * 28 * 28, out_features = 30)
-        self.relu1 = nn.ReLU()
-        self.dense2 = nn.Linear(in_features = 30, out_features = 30)
-        self.relu2 = nn.ReLU()
-        self.dense3 = nn.Linear(in_features = 30, out_features = 10)
+        def forward(self, x: torch.Tensor):
+            x = x.view(-1, 1 * 28 * 28)
 
-    def forward(self, x : torch.Tensor):
-        x = x.view(-1, 1 * 28 * 28)
-        x = self.relu1(self.dense1(x))
-        x = self.relu2(self.dense2(x))
-        x = self.dense3(x)
-        return x
+            x = self.relu1(self.dense1(x))
 
-# 28 x 28 -> 20 -> 20 -> 20 -> 10
-@registerNetwork("dense", "constantWidth", "60neurons", "20width", "3layers")
-class Dense3x20(nn.Module):
-    def __init__(self):
-        super(Dense3x20, self).__init__()
-        self.dense1 = nn.Linear(in_features = 1 * 28 * 28, out_features = 20)
-        self.relu1 = nn.ReLU()
-        self.dense2 = nn.Linear(in_features = 20, out_features = 20)
-        self.relu2 = nn.ReLU()
-        self.dense3 = nn.Linear(in_features = 20, out_features = 20)
-        self.relu3 = nn.ReLU()
-        self.dense4 = nn.Linear(in_features = 20, out_features = 10)
+            for i in range(2, depth + 1):
+                dense = getattr(self, f"dense{i}")
+                relu = getattr(self, f"relu{i}")
+                x = relu(dense(x))
 
-    def forward(self, x: torch.Tensor):
-        x = x.view(-1, 1 * 28 * 28)
-        x = self.relu1(self.dense1(x))
-        x = self.relu2(self.dense2(x))
-        x = self.relu3(self.dense3(x))
-        x = self.dense4(x)
-        return x
+            x = getattr(self, f"dense{depth+1}")(x)
 
-# 28 x 28 -> 15 -> 15 -> 15 -> 15 -> 10
-@registerNetwork("dense", "constantWidth", "60neurons")
-class Dense4x15(nn.Module):
-    def __init__(self):
-        super(Dense4x15, self).__init__()
-        self.dense1 = nn.Linear(in_features = 1 * 28 * 28, out_features = 15)
-        self.relu1 = nn.ReLU()
-        self.dense2 = nn.Linear(in_features = 15, out_features = 15)
-        self.relu2 = nn.ReLU()
-        self.dense3 = nn.Linear(in_features = 15, out_features = 15)
-        self.relu3 = nn.ReLU()
-        self.dense4 = nn.Linear(in_features = 15, out_features = 15)
-        self.relu4 = nn.ReLU()
-        self.dense5 = nn.Linear(in_features = 15, out_features = 10)
+            return x
 
-    def forward(self, x : torch.Tensor):
-        x = x.view(-1, 1 * 28 * 28)
-        x = self.relu1(self.dense1(x))
-        x = self.relu2(self.dense2(x))
-        x = self.relu3(self.dense3(x))
-        x = self.relu4(self.dense4(x))
-        x = self.dense5(x)
-        return x
+    GeneratedMLP.__name__ = f"Dense{depth}x{width}"
+    registerNetwork("dense", "constantWidth", name)(GeneratedMLP)
 
-# 28 x 28 -> 10 -> 10 -> 10 -> 10 -> 10 -> 10 -> 10
-@registerNetwork("dense", "constantWidth", "60neurons")
-class Dense6x10(nn.Module):
-    def __init__(self):
-        super(Dense6x10, self).__init__()
-        self.dense1 = nn.Linear(in_features = 1 * 28 * 28, out_features = 10)
-        self.relu1 = nn.ReLU()
-        self.dense2 = nn.Linear(in_features = 10, out_features = 10)
-        self.relu2 = nn.ReLU()
-        self.dense3 = nn.Linear(in_features = 10, out_features = 10)
-        self.relu3 = nn.ReLU()
-        self.dense4 = nn.Linear(in_features = 10, out_features = 10)
-        self.relu4 = nn.ReLU()
-        self.dense5 = nn.Linear(in_features = 10, out_features = 10)
-        self.relu5 = nn.ReLU()
-        self.dense6 = nn.Linear(in_features = 10, out_features = 10)
-        self.relu6 = nn.ReLU()
-        self.dense7 = nn.Linear(in_features = 10, out_features = 10)
+    return GeneratedMLP
 
-    def forward(self, x : torch.Tensor):
-        x = x.view(-1, 1 * 28 * 28)
-        x = self.relu1(self.dense1(x))
-        x = self.relu2(self.dense2(x))
-        x = self.relu3(self.dense3(x))
-        x = self.relu4(self.dense4(x))
-        x = self.relu5(self.dense5(x))
-        x = self.relu6(self.dense6(x))
-        x = self.dense7(x)
-        return x
 
-##### Varying number of layers #####
-
-# 28 x 28 -> 20 -> 20 -> 10
-@registerNetwork("dense", "constantWidth", "20width")
-class Dense2x20(nn.Module):
-    def __init__(self):
-        super(Dense2x20, self).__init__()
-        self.dense1 = nn.Linear(in_features = 1 * 28 * 28, out_features = 20)
-        self.relu1 = nn.ReLU()
-        self.dense2 = nn.Linear(in_features = 20, out_features = 20)
-        self.relu2 = nn.ReLU()
-        self.dense3 = nn.Linear(in_features = 20, out_features = 10)
-
-    def forward(self, x: torch.Tensor):
-        x = x.view(-1, 1 * 28 * 28)
-        x = self.relu1(self.dense1(x))
-        x = self.relu2(self.dense2(x))
-        x = self.dense3(x)
-        return x
-
-# 28 x 28 -> 20 -> 20 -> 20 -> 10
-# Already included!
-
-# 28 x 28 -> 20 -> 20 -> 20 -> 20 -> 10
-@registerNetwork("dense", "constantWidth", "20width")
-class Dense4x20(nn.Module):
-    def __init__(self):
-        super(Dense4x20, self).__init__()
-        self.dense1 = nn.Linear(in_features = 1 * 28 * 28, out_features = 20)
-        self.relu1 = nn.ReLU()
-        self.dense2 = nn.Linear(in_features = 20, out_features = 20)
-        self.relu2 = nn.ReLU()
-        self.dense3 = nn.Linear(in_features = 20, out_features = 20)
-        self.relu3 = nn.ReLU()
-        self.dense4 = nn.Linear(in_features = 20, out_features = 20)
-        self.relu4 = nn.ReLU()
-        self.dense5 = nn.Linear(in_features = 20, out_features = 10)
-
-    def forward(self, x: torch.Tensor):
-        x = x.view(-1, 1 * 28 * 28)
-        x = self.relu1(self.dense1(x))
-        x = self.relu2(self.dense2(x))
-        x = self.relu3(self.dense3(x))
-        x = self.relu4(self.dense4(x))
-        x = self.dense5(x)
-        return x
-
-# 28 x 28 -> 20 -> 20 -> 20 -> 20 -> 20 -> 10 
-@registerNetwork("dense", "constantWidth", "20width")
-class Dense5x20(nn.Module):
-    def __init__(self):
-        super(Dense5x20, self).__init__()
-        self.dense1 = nn.Linear(in_features = 1 * 28 * 28, out_features = 20)
-        self.relu1 = nn.ReLU()
-        self.dense2 = nn.Linear(in_features = 20, out_features = 20)
-        self.relu2 = nn.ReLU()
-        self.dense3 = nn.Linear(in_features = 20, out_features = 20)
-        self.relu3 = nn.ReLU()
-        self.dense4 = nn.Linear(in_features = 20, out_features = 20)
-        self.relu4 = nn.ReLU()
-        self.dense5 = nn.Linear(in_features = 20, out_features = 20)
-        self.relu5 = nn.ReLU()
-        self.dense6 = nn.Linear(in_features = 20, out_features = 10)
-
-    def forward(self, x: torch.Tensor):
-        x = x.view(-1, 1 * 28 * 28)
-        x = self.relu1(self.dense1(x))
-        x = self.relu2(self.dense2(x))
-        x = self.relu3(self.dense3(x))
-        x = self.relu4(self.dense4(x))
-        x = self.relu5(self.dense5(x))
-        x = self.dense6(x)
-        return x
-
-##### Varying widths #####
-
-# 28 x 28 -> 20 -> 20 -> 20 -> 10
-# Already included!
-
-# 28 x 28 -> 50 -> 50 -> 50 -> 10
-@registerNetwork("dense", "constantWidth", "3layers")
-class Dense3x50(nn.Module):
-    def __init__(self):
-        super(Dense3x50, self).__init__()
-        self.dense1 = nn.Linear(in_features = 1 * 28 * 28, out_features = 50)
-        self.relu1 = nn.ReLU()
-        self.dense2 = nn.Linear(in_features = 50, out_features = 50)
-        self.relu2 = nn.ReLU()
-        self.dense3 = nn.Linear(in_features = 50, out_features = 50)
-        self.relu3 = nn.ReLU()
-        self.dense4 = nn.Linear(in_features = 50, out_features = 10)
-
-    def forward(self, x: torch.Tensor):
-        x = x.view(-1, 1 * 28 * 28)
-        x = self.relu1(self.dense1(x))
-        x = self.relu2(self.dense2(x))
-        x = self.relu3(self.dense3(x))
-        x = self.dense4(x)
-        return x
+def register_all_networks():
+    original_network_sizes = [(1,60),(2,30),(3,20),(4,15),(6,10),
+                              (2,20),(4,20),(5,20),(3,50),(3,200)]  #,(3,1000)]
     
-# 28 x 28 -> 200 -> 200 -> 200 -> 10
-@registerNetwork("dense", "constantWidth", "3layers")
-class Dense3x200(nn.Module):
-    def __init__(self):
-        super(Dense3x200, self).__init__()
-        self.dense1 = nn.Linear(in_features = 1 * 28 * 28, out_features = 200)
-        self.relu1 = nn.ReLU()
-        self.dense2 = nn.Linear(in_features = 200, out_features = 200)
-        self.relu2 = nn.ReLU()
-        self.dense3 = nn.Linear(in_features = 200, out_features = 200)
-        self.relu3 = nn.ReLU()
-        self.dense4 = nn.Linear(in_features = 200, out_features = 10)
-
-    def forward(self, x: torch.Tensor):
-        x = x.view(-1, 1 * 28 * 28)
-        x = self.relu1(self.dense1(x))
-        x = self.relu2(self.dense2(x))
-        x = self.relu3(self.dense3(x))
-        x = self.dense4(x)
-        return x
+    v1_bonus_network_sizes = [(2, 41), (3, 38), (2, 12), (2, 28), (2, 23),
+                              (2, 22), (3, 31), (2, 34), (3, 42), (3, 51),
+                              (3, 25), (2, 29), (3, 41), (3, 19), (2, 39),
+                              (3, 47), (2, 37), (3, 33), (2, 18), (3, 29),
+                              (3, 43), (3, 32), (2, 20), (3, 12), (2, 40),
+                              (2, 19), (3, 36), (2, 32), (3, 48)]
     
-# 28 x 28 -> 1000 -> 1000 -> 1000 -> 10
-@registerNetwork("dense", "constantWidth", "3layers")
-class Dense3x1000(nn.Module):
-    def __init__(self):
-        super(Dense3x1000, self).__init__()
-        self.dense1 = nn.Linear(in_features = 1 * 28 * 28, out_features = 1000)
-        self.relu1 = nn.ReLU()
-        self.dense2 = nn.Linear(in_features = 1000, out_features = 1000)
-        self.relu2 = nn.ReLU()
-        self.dense3 = nn.Linear(in_features = 1000, out_features = 1000)
-        self.relu3 = nn.ReLU()
-        self.dense4 = nn.Linear(in_features = 1000, out_features = 10)
+    #v2_bonus_network_sizes = [(1,35), (2,25), (3,36), (5,15), (4,20), (5, 23)
+    #                          (4,10), (5,25), (6,10), (6,15), (1,30), (2,17), (1, 48)]
+    
+    network_sizes = original_network_sizes + v1_bonus_network_sizes
 
-    def forward(self, x: torch.Tensor):
-        x = x.view(-1, 1 * 28 * 28)
-        x = self.relu1(self.dense1(x))
-        x = self.relu2(self.dense2(x))
-        x = self.relu3(self.dense3(x))
-        x = self.dense4(x)
-        return x
+    classes = []
+    for depth, width in network_sizes:
+        name = f"{depth}x{width}"
+        cls = make_registered_mlp(name, width, depth)
+        classes.append(cls)
 
+    return classes
+
+register_all_networks()
+
+"""
 ########## Convolutional neural networks ##########
 
 @registerNetwork("CNN")
@@ -305,3 +106,6 @@ class LeNet(nn.Module):
         x = self.relu4(self.dense2(x))
         x = self.dense3(x)
         return x
+
+
+"""
