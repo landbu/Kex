@@ -2,7 +2,8 @@ from dataclasses import dataclass
 import torch
 import torch.nn as nn
 from typing import Type
-
+import random
+import numpy as np
 
 @dataclass
 class NetworkEntry:
@@ -46,28 +47,28 @@ def make_registered_mlp(name, width, depth):
             x = getattr(self, f"dense{depth+1}")(x)
 
             return x
-
+    
+    network_is = "big" if width*depth>100 else "small"
     GeneratedMLP.__name__ = f"Dense{depth}x{width}"
-    registerNetwork("dense", "constantWidth", name)(GeneratedMLP)
+    registerNetwork("dense", "constantWidth", name, network_is)(GeneratedMLP)
 
     return GeneratedMLP
 
 
-def register_all_networks():
-    original_network_sizes = [(1,60),(2,30),(3,20),(4,15),(6,10),
-                              (2,20),(4,20),(5,20),(3,50),(3,200)]  #,(3,1000)]
+def register_all_networks():    
+    networks = [(1,10),(1,15),(1,20),(1,25),(1,30),(1,35),(1,40),(1,45),(1,50),(1,55),(1,60),(1,65),(1,70),
+                (2,10),(2,15),(2,20),(2,25),(2,30),(2,35),(2,40),(2,45),(2,50),(2,55),(2,60),(2,65),(2,70),
+                (3,10),(3,15),(3,20),(3,25),(3,30),(3,35),(3,40),(3,45),(3,50),(3,55),(3,60),(3,65),(3,70),
+                (4,10),(4,15),(4,20),(4,25),(4,30),(4,35),(4,40),(4,45),(4,50),(4,55),(4,60),(4,65),(4,70),
+                (5,10),(5,15),(5,20),(5,25),(5,30),(5,35),(5,40),(5,45),(5,50),(5,55),(5,60),(5,65),(5,70),
+                (6,10),(6,15),(6,20),(6,25),(6,30),(6,35),(6,40),(6,45),(6,50),(6,55),(6,60),(6,65),(6,70)]
     
-    v1_bonus_network_sizes = [(2, 41), (3, 38), (2, 12), (2, 28), (2, 23),
-                              (2, 22), (3, 31), (2, 34), (3, 42), (3, 51),
-                              (3, 25), (2, 29), (3, 41), (3, 19), (2, 39),
-                              (3, 47), (2, 37), (3, 33), (2, 18), (3, 29),
-                              (3, 43), (3, 32), (2, 20), (3, 12), (2, 40),
-                              (2, 19), (3, 36), (2, 32), (3, 48)]
-    
-    #v2_bonus_network_sizes = [(1,35), (2,25), (3,36), (5,15), (4,20), (5, 23)
-    #                          (4,10), (5,25), (6,10), (6,15), (1,30), (2,17), (1, 48)]
-    
-    network_sizes = original_network_sizes + v1_bonus_network_sizes
+
+    testing_networks = [(1,25),(1,60),(1,65),(2,20),(2,30),(2,65),(3,20),(3,25),(3,30),(4,30),(4,35),(5,10),(5,15),(5,60),(6,20)]
+
+    accuracy_filter = np.array([]) # Otroligt sämst. Temporärt
+
+    network_sizes = np.array(networks)[accuracy_filter]
 
     classes = []
     for depth, width in network_sizes:
@@ -78,34 +79,3 @@ def register_all_networks():
     return classes
 
 register_all_networks()
-
-"""
-########## Convolutional neural networks ##########
-
-@registerNetwork("CNN")
-class LeNet(nn.Module):
-    def __init__(self):
-        super(LeNet, self).__init__()
-        self.conv1 = nn.Conv2d(in_channels = 1, out_channels = 6, kernel_size = 5, padding = 2)
-        self.relu1 = nn.ReLU()
-        self.pool1 = nn.AvgPool2d(kernel_size = 2, stride = 2)
-        self.conv2 = nn.Conv2d(in_channels = 6, out_channels = 16, kernel_size = 5)
-        self.relu2 = nn.ReLU()
-        self.pool2 = nn.AvgPool2d(kernel_size = 2, stride = 2)
-        self.dense1 = nn.Linear(in_features = 16 * 5 * 5, out_features = 120)
-        self.relu3 = nn.ReLU()
-        self.dense2 = nn.Linear(in_features = 120, out_features = 84)
-        self.relu4 = nn.ReLU()
-        self.dense3 = nn.Linear(in_features = 84, out_features = 10)
-
-    def forward(self, x: torch.Tensor):
-        x = self.pool1(self.relu1(self.conv1(x)))
-        x = self.pool2(self.relu2(self.conv2(x)))
-        x = x.view(-1, 16 * 5 * 5)
-        x = self.relu3(self.dense1(x))
-        x = self.relu4(self.dense2(x))
-        x = self.dense3(x)
-        return x
-
-
-"""

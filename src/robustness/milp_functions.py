@@ -164,7 +164,7 @@ def generate_multi_model_input(multi_model, Y, mode="independent"):
     if g_model.Status == GRB.OPTIMAL: print("Optimal solution found!")
     else:
         print("No solution found")
-        return
+        return None, None
     obj_value = g_model.ObjVal
     image = input_vars.X
     return image, obj_value    

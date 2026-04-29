@@ -1,0 +1,4 @@
+network1,network2,target_class,mode,obj_val
+Dense1x60,Dense5x15,0,independent,65.88982468515422
+Dense1x65,Dense3x20,0,independent,52.68898158304077
+Dense1x65,Dense2x20,3,independent,76.97769818617712

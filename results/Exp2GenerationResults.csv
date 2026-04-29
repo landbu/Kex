@@ -1,261 +1,90 @@
 network,class,som_mode,obj_val
-Dense1x60,0,second place relative,27.797213331613413
-Dense1x60,0,mean relative,34.50637439673656
-Dense1x60,0,independent,29.619699798750553
-Dense1x60,1,second place relative,20.354572986456642
-Dense1x60,1,mean relative,31.153359512247338
-Dense1x60,1,independent,25.963501875864758
-Dense1x60,3,second place relative,39.2922825462546
-Dense1x60,3,mean relative,49.87822632843778
-Dense1x60,3,independent,42.18212273652547
-Dense2x30,0,second place relative,28.88402702113818
-Dense2x30,0,mean relative,38.85324883193226
-Dense2x30,0,independent,29.228062507080168
-Dense2x30,1,second place relative,19.08001948571323
-Dense2x30,1,mean relative,21.62687687045565
-Dense2x30,1,independent,20.461967037073716
-Dense2x30,3,second place relative,37.49750454105613
-Dense2x30,3,mean relative,49.57576400949211
-Dense2x30,3,independent,40.33240593172446
-Dense3x20,0,second place relative,24.08105563776175
-Dense3x20,0,mean relative,34.185318142982425
-Dense3x20,0,independent,27.649113269756274
-Dense3x20,1,second place relative,27.66455462003447
-Dense3x20,1,mean relative,37.1001824402042
-Dense3x20,1,independent,29.72926647914143
-Dense3x20,3,second place relative,28.946942526942784
-Dense3x20,3,mean relative,51.607879673612146
-Dense3x20,3,independent,43.01116564129969
-Dense4x15,0,second place relative,24.13847322576575
-Dense4x15,0,mean relative,53.283753832687225
-Dense4x15,0,independent,43.678847481990125
-Dense4x15,1,second place relative,23.88830458428597
-Dense4x15,1,mean relative,37.742559936697326
-Dense4x15,1,independent,37.516703212488274
-Dense4x15,3,second place relative,31.64698591578746
-Dense4x15,3,mean relative,46.933870817156865
-Dense4x15,3,independent,41.26036322158152
-Dense6x10,0,second place relative,8.510486708161663
-Dense6x10,0,mean relative,47.38152116578127
-Dense6x10,0,independent,38.93427341048238
-Dense6x10,1,second place relative,6.398168407050431
-Dense6x10,1,mean relative,29.65573756135719
-Dense6x10,1,independent,7.471986977780992
-Dense6x10,3,second place relative,10.564639298660836
-Dense6x10,3,mean relative,114.1986455588561
-Dense6x10,3,independent,107.17105608087113
-Dense2x20,0,second place relative,28.86666032549815
-Dense2x20,0,mean relative,42.153379444481935
-Dense2x20,0,independent,29.716082221336418
-Dense2x20,1,second place relative,19.284392025384026
-Dense2x20,1,mean relative,29.21477313505473
-Dense2x20,1,independent,19.32545730637964
-Dense2x20,3,second place relative,32.20287254388742
-Dense2x20,3,mean relative,49.579472773504015
-Dense2x20,3,independent,34.46594793771657
-Dense4x20,0,second place relative,36.94505083624852
-Dense4x20,0,mean relative,59.27677529195608
-Dense4x20,0,independent,51.55929678116898
-Dense4x20,1,second place relative,26.004839786548153
-Dense4x20,1,mean relative,50.932519726642994
-Dense4x20,1,independent,38.18113004777929
-Dense4x20,3,second place relative,41.217681737749466
-Dense4x20,3,mean relative,63.20378462669576
-Dense4x20,3,independent,47.741346484375235
-Dense5x20,0,second place relative,25.804235282386948
-Dense5x20,0,mean relative,50.823180725928
-Dense5x20,0,independent,42.68796576743897
-Dense5x20,1,second place relative,29.446385216380577
-Dense5x20,1,mean relative,57.400970337724374
-Dense5x20,1,independent,41.05439750236423
-Dense5x20,3,second place relative,34.17829028061058
-Dense5x20,3,mean relative,64.76117022709774
-Dense5x20,3,independent,48.51322723259458
-Dense2x41,0,second place relative,28.130195111846277
-Dense2x41,0,mean relative,36.457480709904644
-Dense2x41,0,independent,29.727156251856876
-Dense2x41,1,second place relative,20.931914635106068
-Dense2x41,1,mean relative,31.21169481274165
-Dense2x41,1,independent,24.088930790519775
-Dense2x41,3,second place relative,45.057767100991946
-Dense2x41,3,mean relative,61.36904752449824
-Dense2x41,3,independent,47.65539308041645
-Dense3x38,0,second place relative,31.23862524197324
-Dense3x38,3,second place relative,41.39236877127911
-Dense3x38,3,mean relative,54.10785572461737
-Dense3x38,3,independent,48.23705938167033
-Dense2x12,0,second place relative,28.815189793252387
-Dense2x12,0,mean relative,41.11908161416556
-Dense2x12,0,independent,31.03152352195196
-Dense2x12,1,second place relative,28.029169479632163
-Dense2x12,1,mean relative,44.598866371540126
-Dense2x12,1,independent,31.919422471860717
-Dense2x12,3,second place relative,37.02153096649339
-Dense2x12,3,mean relative,60.2386138810117
-Dense2x12,3,independent,39.95956768154643
-Dense2x28,0,second place relative,23.618290914502506
-Dense2x28,0,mean relative,34.44767474760815
-Dense2x28,0,independent,29.861147358383725
-Dense2x28,1,second place relative,25.23860296257502
-Dense2x28,1,mean relative,31.230047974922122
-Dense2x28,1,independent,25.479910429325294
-Dense2x28,3,second place relative,46.154776513304476
-Dense2x28,3,mean relative,53.597404836886376
-Dense2x28,3,independent,47.7538661970278
-Dense2x23,0,second place relative,27.37798249369808
-Dense2x23,0,mean relative,40.001470067541206
-Dense2x23,0,independent,28.155890419975513
-Dense2x23,1,second place relative,25.56346837138015
-Dense2x23,1,mean relative,32.359807354610396
-Dense2x23,1,independent,29.527530612461042
-Dense2x23,3,second place relative,38.58323742616949
-Dense2x23,3,mean relative,57.09230490126176
-Dense2x23,3,independent,48.55490575080212
-Dense2x22,0,second place relative,21.42362902066742
-Dense2x22,0,mean relative,32.63657827452826
-Dense2x22,0,independent,23.87908634717717
-Dense2x22,1,second place relative,18.34395716316269
-Dense2x22,1,mean relative,32.31779568028019
-Dense2x22,1,independent,18.85141641655504
-Dense2x22,3,second place relative,28.77489112707093
-Dense2x22,3,mean relative,44.11012078444731
-Dense2x22,3,independent,30.761846780564188
-Dense3x31,0,second place relative,27.597132166430548
-Dense3x31,0,mean relative,36.08527976967707
-Dense3x31,0,independent,28.24080089478452
-Dense3x31,1,second place relative,22.200800615235263
-Dense3x31,1,mean relative,33.245274162669126
-Dense3x31,1,independent,31.54446928053254
-Dense3x31,3,second place relative,48.34882629812285
-Dense3x31,3,mean relative,60.7555900686232
-Dense3x31,3,independent,56.04874251219282
-Dense2x34,0,second place relative,27.441041950861603
-Dense2x34,0,mean relative,34.7917317980992
-Dense2x34,0,independent,30.188260034324248
-Dense2x34,1,second place relative,24.826229442383585
-Dense2x34,1,mean relative,33.63572003871568
-Dense2x34,1,independent,26.82977150745815
-Dense2x34,3,second place relative,41.301924391247084
-Dense2x34,3,mean relative,49.82466453873619
-Dense2x34,3,independent,41.60335875991842
-Dense3x25,0,second place relative,27.09397495816063
-Dense3x25,0,mean relative,37.17260260787006
-Dense3x25,0,independent,27.528692884089836
-Dense3x25,1,second place relative,28.241028822463385
-Dense3x25,1,mean relative,35.41016609973454
-Dense3x25,1,independent,29.91095165322091
-Dense3x25,3,second place relative,42.74977831017592
-Dense3x25,3,mean relative,56.60113704429474
-Dense3x25,3,independent,46.13704223269976
-Dense2x29,0,second place relative,24.99345123139758
-Dense2x29,0,mean relative,32.718332592715726
-Dense2x29,0,independent,25.001389942509384
-Dense2x29,1,second place relative,20.238235409239568
-Dense2x29,1,mean relative,28.333035826481957
-Dense2x29,1,independent,21.67625946431124
-Dense2x29,3,second place relative,43.98566191052944
-Dense2x29,3,mean relative,57.18163285534857
-Dense2x29,3,independent,46.01409226395279
-Dense3x19,0,second place relative,22.926222203777336
-Dense3x19,0,mean relative,45.70167412875579
-Dense3x19,0,independent,34.49825795045302
-Dense3x19,1,second place relative,19.06197988947705
-Dense3x19,1,mean relative,28.13347307662631
-Dense3x19,1,independent,23.163374214340934
-Dense3x19,3,second place relative,35.18098322912416
-Dense3x19,3,mean relative,55.602948191162646
-Dense3x19,3,independent,40.65009252777712
-Dense2x39,0,second place relative,30.449087004416665
-Dense2x39,0,mean relative,38.94572703980859
-Dense2x39,0,independent,30.6395075305539
-Dense2x39,1,second place relative,19.99997922224596
-Dense2x39,1,mean relative,26.60231978856502
-Dense2x39,1,independent,20.48964329711952
-Dense2x39,3,second place relative,34.16741996218089
-Dense2x39,3,mean relative,47.46675365640458
-Dense2x39,3,independent,36.38463460941248
-Dense2x37,0,second place relative,28.928175299866805
-Dense2x37,0,mean relative,44.78645102864518
-Dense2x37,0,independent,34.90276364569401
-Dense2x37,1,second place relative,21.140967064659385
-Dense2x37,1,mean relative,30.173289347340123
-Dense2x37,1,independent,24.935069624046076
-Dense2x37,3,second place relative,43.212735469381016
-Dense2x37,3,mean relative,66.80585778368979
-Dense2x37,3,independent,49.50590618026463
-Dense3x33,0,second place relative,27.37975986176728
-Dense3x33,0,mean relative,39.31523328075818
-Dense3x33,0,independent,28.631796819958332
-Dense3x33,1,second place relative,20.825529205980637
-Dense3x33,1,independent,27.391864569512155
-Dense3x33,3,second place relative,48.610635541837745
-Dense3x33,3,mean relative,63.661191188185214
-Dense3x33,3,independent,53.23649728104763
-Dense2x18,0,second place relative,22.30506550689975
-Dense2x18,0,mean relative,37.26257085498994
-Dense2x18,0,independent,35.64490691234604
-Dense2x18,1,second place relative,21.96069484010203
-Dense2x18,1,mean relative,39.98504920103018
-Dense2x18,1,independent,28.357080479862475
-Dense2x18,3,second place relative,40.204254177277626
-Dense2x18,3,mean relative,52.75610003757862
-Dense2x18,3,independent,45.38419143833897
-Dense3x29,0,second place relative,22.537115192493143
-Dense3x29,0,mean relative,37.21613327268765
-Dense3x29,0,independent,29.71185301490259
-Dense3x29,1,second place relative,26.28749157779224
-Dense3x29,1,mean relative,34.94140493094564
-Dense3x29,1,independent,33.96641385628693
-Dense3x29,3,second place relative,38.36913734663581
-Dense3x29,3,mean relative,69.55988065584788
-Dense3x29,3,independent,57.0935893505627
-Dense3x32,0,second place relative,23.08687997309516
-Dense3x32,0,mean relative,33.29913505698556
-Dense3x32,0,independent,24.74248716206214
-Dense3x32,1,second place relative,26.76947184643339
-Dense3x32,1,mean relative,31.333544422583625
-Dense3x32,1,independent,27.71183026218028
-Dense3x32,3,second place relative,36.76467618042692
-Dense3x32,3,mean relative,52.42580868695062
-Dense3x32,3,independent,41.29357398064279
-Dense3x12,0,second place relative,19.56112937500401
-Dense3x12,0,mean relative,47.525137102308925
-Dense3x12,0,independent,35.84344468256554
-Dense3x12,1,second place relative,26.813016086385353
-Dense3x12,1,mean relative,31.547019525059255
-Dense3x12,1,independent,28.527720295976337
-Dense3x12,3,second place relative,27.165995699108368
-Dense3x12,3,mean relative,49.449138255693484
-Dense3x12,3,independent,31.77773156249637
-Dense2x40,0,second place relative,29.593126719907268
-Dense2x40,0,mean relative,39.37102549275259
-Dense2x40,0,independent,31.63674267748385
-Dense2x40,1,second place relative,19.054269070799236
-Dense2x40,1,mean relative,30.84398161952823
-Dense2x40,1,independent,20.602487087576378
-Dense2x40,3,second place relative,39.961009903297004
-Dense2x40,3,mean relative,54.12488820768453
-Dense2x40,3,independent,41.02809737415954
-Dense2x19,0,second place relative,27.568066132076986
-Dense2x19,0,mean relative,32.95407292820588
-Dense2x19,0,independent,28.26036838611942
-Dense2x19,1,second place relative,27.140952847090393
-Dense2x19,1,mean relative,36.83375298454831
-Dense2x19,1,independent,31.07865322723334
-Dense2x19,3,second place relative,30.402492197018397
-Dense2x19,3,mean relative,47.66326340407428
-Dense2x19,3,independent,40.07512848012217
-Dense3x36,0,second place relative,26.119889925311327
-Dense3x36,0,mean relative,35.00677454056949
-Dense3x36,0,independent,33.83561293664569
-Dense3x36,3,second place relative,32.620189072505504
-Dense3x36,3,independent,33.60457931768525
-Dense2x32,0,second place relative,25.304098790973057
-Dense2x32,0,mean relative,35.74521772991111
-Dense2x32,0,independent,30.49077265268032
-Dense2x32,1,second place relative,21.95852617003041
-Dense2x32,1,mean relative,33.076912620115145
-Dense2x32,1,independent,24.961980973640042
-Dense2x32,3,second place relative,40.117463888028134
-Dense2x32,3,mean relative,51.7695229320666
-Dense2x32,3,independent,40.80279222277151
+Dense1x25,0,second place relative,25.314865875156396
+Dense1x25,0,mean relative,33.272152406963436
+Dense1x25,0,independent,26.040014479704762
+Dense1x25,1,second place relative,20.91137865346809
+Dense1x25,1,mean relative,30.704765765771576
+Dense1x25,1,independent,27.278264755363143
+Dense1x25,3,second place relative,37.65495733991658
+Dense1x25,3,mean relative,60.32742175075177
+Dense1x25,3,independent,44.702956800374
+Dense1x60,0,second place relative,26.138268842629312
+Dense1x60,0,mean relative,32.038969074906625
+Dense1x60,0,independent,26.9704174350725
+Dense1x60,1,second place relative,23.34345176963621
+Dense1x60,1,mean relative,30.018027799343905
+Dense1x60,1,independent,23.93631592016377
+Dense1x60,3,second place relative,38.53308822357611
+Dense1x60,3,mean relative,51.85643098339453
+Dense1x60,3,independent,42.44907522110982
+Dense1x65,0,second place relative,26.432672686389985
+Dense1x65,0,mean relative,31.70878061527078
+Dense1x65,0,independent,27.008212022586306
+Dense1x65,1,mean relative,31.849118091204762
+Dense1x65,1,independent,25.553167342472335
+Dense1x65,3,second place relative,41.52942611631919
+Dense1x65,3,mean relative,58.26110011182613
+Dense1x65,3,independent,46.770543881608624
+Dense2x20,0,second place relative,26.252956275745547
+Dense2x20,0,mean relative,36.5877556784043
+Dense2x20,0,independent,27.974601348755172
+Dense2x20,1,second place relative,25.2358906527302
+Dense2x20,1,mean relative,31.69271975080332
+Dense2x20,1,independent,26.396502640398815
+Dense2x20,3,second place relative,31.05520660186381
+Dense2x20,3,mean relative,48.313091175458965
+Dense2x20,3,independent,34.984954880148
+Dense2x30,0,second place relative,25.488039884320866
+Dense2x30,0,mean relative,34.5979276087719
+Dense2x30,0,independent,25.499947734234397
+Dense2x30,1,second place relative,23.339493211615128
+Dense2x30,1,mean relative,33.2966194201861
+Dense2x30,1,independent,23.60238705702848
+Dense2x30,3,second place relative,36.55459533227975
+Dense2x30,3,mean relative,49.73864874246214
+Dense2x30,3,independent,37.08268044485116
+Dense3x20,0,second place relative,27.29507968041028
+Dense3x20,0,mean relative,39.95188323071813
+Dense3x20,0,independent,31.322144817508118
+Dense3x20,1,second place relative,21.398537857494922
+Dense3x20,1,mean relative,36.98156010952515
+Dense3x20,1,independent,28.07007104157808
+Dense3x20,3,second place relative,32.29680067093918
+Dense3x20,3,mean relative,57.36149567540087
+Dense3x20,3,independent,51.26867634711284
+Dense3x25,0,second place relative,24.168148921572932
+Dense3x25,0,mean relative,37.35682779343676
+Dense3x25,0,independent,30.962779341737875
+Dense3x25,1,second place relative,25.222655845692938
+Dense3x25,1,mean relative,37.374806587478986
+Dense3x25,1,independent,28.97852236944307
+Dense3x25,3,second place relative,38.58187001122896
+Dense3x25,3,mean relative,58.20264870943099
+Dense3x25,3,independent,45.87880861797973
+Dense3x30,0,second place relative,20.908561542820053
+Dense3x30,0,mean relative,33.82294557726851
+Dense3x30,0,independent,22.22602029725237
+Dense3x30,1,second place relative,27.55978799953732
+Dense3x30,1,mean relative,39.012097508106194
+Dense3x30,1,independent,28.416373323733133
+Dense3x30,3,second place relative,36.74760958930747
+Dense3x30,3,mean relative,52.774199992433665
+Dense3x30,3,independent,37.20288616492968
+Dense5x10,0,second place relative,25.411093559711016
+Dense5x10,0,mean relative,45.65272698425731
+Dense5x10,0,independent,25.50733789150787
+Dense5x10,1,second place relative,17.410188432302142
+Dense5x10,1,mean relative,39.87993521892089
+Dense5x10,1,independent,31.570326030584447
+Dense5x10,3,second place relative,20.58480758352897
+Dense5x10,3,mean relative,47.27354978225941
+Dense5x10,3,independent,27.071168022594772
+Dense5x15,0,second place relative,24.96938541541852
+Dense5x15,0,mean relative,58.368729940227226
+Dense5x15,0,independent,49.67654010853884
+Dense5x15,1,second place relative,28.563584624871385
+Dense5x15,1,mean relative,64.75696272759915
+Dense5x15,1,independent,46.17794453938825
+Dense5x15,3,second place relative,26.568722201450772
+Dense5x15,3,mean relative,43.212992706208155
+Dense5x15,3,independent,28.501610347978165
