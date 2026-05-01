@@ -63,12 +63,9 @@ def register_all_networks():
                 (5,10),(5,15),(5,20),(5,25),(5,30),(5,35),(5,40),(5,45),(5,50),(5,55),(5,60),(5,65),(5,70),
                 (6,10),(6,15),(6,20),(6,25),(6,30),(6,35),(6,40),(6,45),(6,50),(6,55),(6,60),(6,65),(6,70)]
     
-
-    testing_networks = [(1,25),(1,60),(1,65),(2,20),(2,30),(2,65),(3,20),(3,25),(3,30),(4,30),(4,35),(5,10),(5,15),(5,60),(6,20)]
-
-    accuracy_filter = np.array([]) # Otroligt sämst. Temporärt
-
-    network_sizes = np.array(networks)[accuracy_filter]
+    networks = np.array(networks)
+    mask = np.array([False, True, True, True, True, True, True, True, True, True, True, True, True, False, False, True, True, True, True, True, True, True, True, True, True, True, False, True, True, True, True, True, False, True, True, True, True, True, True, False, False, True, True, True, True, True, True, True, True, True, True, True, False, False, True, True, True, True, True, True, True, True, True, True, True, False, False, False, True, True, True, True, True, True, True, True, True, True])
+    network_sizes = networks[mask]
 
     classes = []
     for depth, width in network_sizes:
