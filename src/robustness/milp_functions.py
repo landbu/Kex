@@ -128,10 +128,8 @@ def feature_selection(bridge_model, Y, g_model=None, mode="independent"): # Döp
     else: print("Invalid mode")
 
     g_model.optimize()
-    if g_model.Status == GRB.OPTIMAL: print("Optimal solution found!")
-    else:
-        print("No solution found")
-        return
+    if g_model.Status != GRB.OPTIMAL:
+        return None, None
     obj_value = g_model.ObjVal
     image = input_vars.X
     return image, obj_value
@@ -161,9 +159,7 @@ def generate_multi_model_input(multi_model, Y, mode="independent"):
     g_model.setObjective(objective, GRB.MAXIMIZE)
 
     g_model.optimize()
-    if g_model.Status == GRB.OPTIMAL: print("Optimal solution found!")
-    else:
-        print("No solution found")
+    if g_model.Status != GRB.OPTIMAL:
         return None, None
     obj_value = g_model.ObjVal
     image = input_vars.X
