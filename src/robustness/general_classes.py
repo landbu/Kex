@@ -7,17 +7,17 @@ import torch.nn.functional as F
 from tqdm import tqdm
 
 class ModelBridge():
-    def __init__(self,torch_model, gurobi_model=None):
+    def __init__(self,torch_model, gurobi_model=None, time_limit = 300):
         customEnv = gp.Env(empty = True)
-        OutputFlag = 1
-        customEnv.setParam("OutputFlag", OutputFlag)  
+        OutputFlag = 0
+        customEnv.setParam("OutputFlag", OutputFlag)
         customEnv.start()
         if gurobi_model is None:
             self.gurobi_model =  gp.Model("LargeModel", env = customEnv)
         else: self.gurobi_model = gurobi_model
         self.torch_model = torch_model
         self.layers = []
-        self.gurobi_model.setParam("TimeLimit", 90)  # seconds
+        self.gurobi_model.setParam("TimeLimit", time_limit = 300)  # seconds
 
     def add_layer(self,layer):
         self.layers.append(layer)
@@ -137,13 +137,13 @@ class ModelBridge():
 
 
 class MultiModel():
-    def __init__(self, input_shape, L0=0, U0=1):
+    def __init__(self, input_shape, L0=0, U0=1, time_limit = 300):
         self.shared_gurobi_model = gp.Model()
         self.bridges = []
         self.input_layer = InputLayer(self.shared_gurobi_model, input_shape, L0, U0)
         self.input_vars = self.input_layer.network_input_vars
         self.output_layers = []
-        self.shared_gurobi_model.setParam("TimeLimit", 90)  # seconds
+        self.shared_gurobi_model.setParam("TimeLimit", time_limit)  # seconds
 
 
     def add_networks(self,pytorch_models):
