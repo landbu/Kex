@@ -17,7 +17,7 @@ class ModelBridge():
         else: self.gurobi_model = gurobi_model
         self.torch_model = torch_model
         self.layers = []
-        self.gurobi_model.setParam("TimeLimit", time_limit = 300)  # seconds
+        self.gurobi_model.setParam("TimeLimit", time_limit)  # seconds
 
     def add_layer(self,layer):
         self.layers.append(layer)
