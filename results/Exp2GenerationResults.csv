@@ -1,0 +1,235 @@
+network,class,som_mode,obj_val,finishedSearch
+Dense1x15,0,independent,33.3962742750828,True
+Dense1x15,0,mean relative,38.45904899232561,True
+Dense1x15,0,second place relative,27.013028022249472,True
+Dense1x15,1,independent,23.587717949629944,True
+Dense1x15,1,mean relative,25.219745260242743,True
+Dense1x15,1,second place relative,19.681987433994422,True
+Dense1x15,3,independent,42.740411826110396,True
+Dense1x15,3,mean relative,45.087988914776446,True
+Dense1x15,3,second place relative,34.03184717740113,True
+Dense1x20,0,independent,32.43650276583476,True
+Dense1x20,0,mean relative,35.89808378323394,True
+Dense1x20,0,second place relative,23.786330148708885,True
+Dense1x20,1,independent,22.4012135352112,True
+Dense1x20,1,mean relative,26.12357364973917,True
+Dense1x20,1,second place relative,18.79048644790746,True
+Dense1x20,3,independent,42.39730699582567,True
+Dense1x20,3,mean relative,50.34735585460703,True
+Dense1x20,3,second place relative,36.46143563399245,True
+Dense1x25,0,independent,23.385587901195013,True
+Dense1x25,0,mean relative,30.957535108228566,True
+Dense1x25,0,second place relative,22.716515252849035,True
+Dense1x25,1,independent,23.886571638372104,True
+Dense1x25,1,mean relative,27.206137057133766,True
+Dense1x25,1,second place relative,23.885806311306307,True
+Dense1x25,3,independent,40.53546865600473,True
+Dense1x25,3,mean relative,47.828659157859335,True
+Dense1x25,3,second place relative,33.526515267404,True
+Dense1x30,0,independent,25.230886853562986,True
+Dense1x30,0,mean relative,31.586294749268976,True
+Dense1x30,0,second place relative,24.657568199207294,True
+Dense1x30,1,independent,21.816343201997842,True
+Dense1x30,1,mean relative,30.51054795841217,True
+Dense1x30,1,second place relative,20.955594479680798,True
+Dense1x30,3,independent,40.659012864812986,True
+Dense1x30,3,mean relative,55.61189397374015,True
+Dense1x30,3,second place relative,39.505492771922114,True
+Dense1x35,0,independent,31.512002815373485,True
+Dense1x35,0,mean relative,35.582541318595624,True
+Dense1x35,0,second place relative,28.506504449162737,True
+Dense1x35,1,independent,33.03204996893408,True
+Dense1x35,1,mean relative,35.90702260037575,True
+Dense1x35,1,second place relative,29.20751972654355,True
+Dense1x35,3,independent,41.02873974301982,True
+Dense1x35,3,mean relative,49.147499357697,True
+Dense1x35,3,second place relative,37.346538018194586,True
+Dense1x40,0,independent,27.70686932849948,True
+Dense1x40,0,mean relative,31.475905905800303,True
+Dense1x40,0,second place relative,24.87486508231957,True
+Dense1x40,1,independent,21.266253631781222,True
+Dense1x40,1,mean relative,25.057671804921828,True
+Dense1x40,1,second place relative,19.91760547272802,True
+Dense1x40,3,independent,39.64880102355429,True
+Dense1x40,3,mean relative,51.00317447870782,True
+Dense1x40,3,second place relative,37.49806457571226,True
+Dense1x45,0,independent,25.411922716539745,True
+Dense1x45,0,mean relative,30.441159572216193,True
+Dense1x45,0,second place relative,24.70199009972308,True
+Dense1x45,1,independent,22.646569666333217,True
+Dense1x45,1,mean relative,26.06173326003283,True
+Dense1x45,1,second place relative,22.276724828271366,True
+Dense1x45,3,independent,44.90900503128868,True
+Dense1x45,3,mean relative,52.66619097828383,True
+Dense1x45,3,second place relative,36.38315084568293,True
+Dense1x50,0,independent,30.93209865462667,True
+Dense1x50,0,mean relative,36.57229389167612,True
+Dense1x50,0,second place relative,27.76113959580644,True
+Dense1x50,1,independent,26.311672768709094,True
+Dense1x50,1,mean relative,30.342523641421394,True
+Dense1x50,1,second place relative,23.88050901695248,True
+Dense1x50,3,independent,44.11038933929221,True
+Dense1x50,3,mean relative,51.528669117869974,True
+Dense1x50,3,second place relative,36.02832797847324,True
+Dense1x55,0,independent,29.042636839430358,True
+Dense1x55,0,mean relative,33.51297815279064,True
+Dense1x55,0,second place relative,24.520678089572964,True
+Dense1x55,1,independent,22.601014857864925,True
+Dense1x55,1,mean relative,28.166129831661628,True
+Dense1x55,1,second place relative,21.90756484529922,True
+Dense1x55,3,independent,46.705627923970084,True
+Dense1x55,3,mean relative,58.266937963469545,True
+Dense1x55,3,second place relative,43.06048349726601,True
+Dense1x60,0,independent,31.801024625851014,True
+Dense1x60,0,mean relative,35.16138549176775,True
+Dense1x60,0,second place relative,29.33561464310798,True
+Dense1x60,1,independent,26.4160995652318,True
+Dense1x60,1,mean relative,36.57305087819529,True
+Dense1x60,1,second place relative,22.301106167389907,True
+Dense1x60,3,independent,43.56542264319163,True
+Dense1x60,3,mean relative,56.26746447057721,True
+Dense1x60,3,second place relative,42.780922640304844,True
+Dense1x65,0,independent,25.46285088216678,True
+Dense1x65,0,mean relative,33.06739822715367,True
+Dense1x65,0,second place relative,25.29044424832588,True
+Dense1x65,1,independent,24.836407245547164,True
+Dense1x65,1,mean relative,29.636322805523893,True
+Dense1x65,1,second place relative,22.466044934153437,True
+Dense1x65,3,independent,42.804950247844076,True
+Dense1x65,3,mean relative,55.59898646392137,True
+Dense1x65,3,second place relative,41.88444060747826,True
+Dense1x70,0,independent,27.28809927717588,True
+Dense1x70,0,mean relative,34.040859120501004,True
+Dense1x70,0,second place relative,26.13480080824083,True
+Dense1x70,1,independent,21.885211160953858,True
+Dense1x70,1,mean relative,26.267405111118176,True
+Dense1x70,1,second place relative,21.34932683687132,True
+Dense1x70,3,independent,48.47571790631715,True
+Dense1x70,3,mean relative,61.62554485145578,True
+Dense1x70,3,second place relative,45.6639884823445,True
+Dense2x20,0,independent,32.798304770375864,True
+Dense2x20,0,mean relative,42.736447563257144,True
+Dense2x20,0,second place relative,32.72882174018356,True
+Dense2x20,1,independent,24.31909416732087,True
+Dense2x20,1,mean relative,32.464736016442124,True
+Dense2x20,1,second place relative,22.20586236856719,True
+Dense2x20,3,independent,29.46616146739883,True
+Dense2x20,3,mean relative,44.462060603819396,True
+Dense2x20,3,second place relative,28.400177102131163,True
+Dense2x25,0,independent,32.007311920286725,True
+Dense2x25,0,mean relative,38.06535344953832,True
+Dense2x25,0,second place relative,25.064467037388763,True
+Dense2x25,1,independent,26.469077477444692,True
+Dense2x25,1,mean relative,30.272496027498207,True
+Dense2x25,1,second place relative,22.99007635449473,True
+Dense2x25,3,independent,40.85909677648497,True
+Dense2x25,3,mean relative,49.18611948664725,True
+Dense2x25,3,second place relative,33.50874424575028,True
+Dense2x30,0,independent,31.03198659949726,True
+Dense2x30,0,mean relative,34.93100109918406,True
+Dense2x30,0,second place relative,23.66581937768009,True
+Dense2x30,1,independent,32.06729758697827,True
+Dense2x30,1,mean relative,39.66109190425369,True
+Dense2x30,1,second place relative,30.53405110192809,True
+Dense2x30,3,independent,51.3550775895058,True
+Dense2x30,3,mean relative,60.92616692834143,True
+Dense2x30,3,second place relative,45.43540668620815,True
+Dense2x35,0,independent,27.78876069557267,True
+Dense2x35,0,mean relative,34.94948525109119,True
+Dense2x35,0,second place relative,22.682459623188787,True
+Dense2x35,1,independent,20.871858687813575,True
+Dense2x35,1,mean relative,27.036888919925964,True
+Dense2x35,1,second place relative,20.416161511321697,True
+Dense2x35,3,independent,48.29996038744767,True
+Dense2x35,3,mean relative,62.44858171418973,True
+Dense2x35,3,second place relative,39.326705170241674,True
+Dense2x40,0,independent,30.806876926666135,True
+Dense2x40,0,mean relative,33.699553412837126,True
+Dense2x40,0,second place relative,25.53178301527163,True
+Dense2x40,1,independent,25.94683609363764,True
+Dense2x40,1,mean relative,29.133541865901293,True
+Dense2x40,1,second place relative,23.220506121960778,True
+Dense2x40,3,independent,50.55263107506465,True
+Dense2x40,3,mean relative,55.965674061151,True
+Dense2x40,3,second place relative,37.899118572377944,True
+Dense2x45,0,independent,25.0398732481018,True
+Dense2x45,0,mean relative,31.778366932419576,True
+Dense2x45,0,second place relative,24.39557669074103,True
+Dense2x45,1,independent,21.533036613999062,True
+Dense2x45,1,mean relative,29.565987706218973,True
+Dense2x45,1,second place relative,21.155000495585853,True
+Dense2x45,3,independent,52.03990759344941,True
+Dense2x45,3,mean relative,64.86818108500712,True
+Dense2x45,3,second place relative,40.92600282156762,True
+Dense2x50,0,independent,26.678486608919883,True
+Dense2x50,0,mean relative,32.77469286906911,True
+Dense2x50,0,second place relative,26.215410823686266,True
+Dense2x50,1,independent,0,False
+Dense2x50,1,mean relative,0,False
+Dense2x50,1,second place relative,24.435336621066252,True
+Dense2x50,3,independent,44.07282942386346,True
+Dense2x50,3,mean relative,55.08388869490678,True
+Dense2x50,3,second place relative,38.39548123504768,True
+Dense3x15,0,independent,22.186183378536004,True
+Dense3x15,0,mean relative,34.63114067356468,True
+Dense3x15,0,second place relative,19.638287885832206,True
+Dense3x15,1,independent,20.394644777137145,True
+Dense3x15,1,mean relative,29.25501779256758,True
+Dense3x15,1,second place relative,19.66859850836056,True
+Dense3x15,3,independent,33.535702834418565,True
+Dense3x15,3,mean relative,61.459987799990756,True
+Dense3x15,3,second place relative,32.87602244924751,True
+Dense3x20,0,independent,28.169086032390013,True
+Dense3x20,0,mean relative,34.70910837810676,True
+Dense3x20,0,second place relative,22.211221326587143,True
+Dense3x20,1,independent,36.955937858427404,True
+Dense3x20,1,mean relative,37.55631562079586,True
+Dense3x20,1,second place relative,27.68018235698554,True
+Dense3x20,3,independent,52.58662410424931,True
+Dense3x20,3,mean relative,58.4448672229077,True
+Dense3x20,3,second place relative,31.91517212352093,True
+Dense3x25,0,independent,40.80440306271483,True
+Dense3x25,0,mean relative,45.832987018479535,True
+Dense3x25,0,second place relative,23.646612734071294,True
+Dense3x25,1,independent,30.048400326933553,True
+Dense3x25,1,mean relative,39.87716609360785,True
+Dense3x25,1,second place relative,24.20114658075964,True
+Dense3x25,3,independent,49.72678179682792,True
+Dense3x25,3,mean relative,63.81895394881998,True
+Dense3x25,3,second place relative,41.78378511784958,True
+Dense3x30,0,independent,30.31892171568643,True
+Dense3x30,0,mean relative,32.81495699819967,True
+Dense3x30,0,second place relative,25.04666554768292,True
+Dense3x30,1,independent,34.809317011606225,True
+Dense3x30,1,mean relative,34.849653665577605,True
+Dense3x30,1,second place relative,26.710821419868566,True
+Dense3x30,3,independent,53.839239546498185,True
+Dense3x30,3,mean relative,54.02793957818252,True
+Dense3x30,3,second place relative,37.20712566702894,True
+Dense4x20,0,independent,25.35110348909179,True
+Dense4x20,0,mean relative,35.72211513550627,True
+Dense4x20,0,second place relative,21.706081158044796,True
+Dense4x20,1,independent,39.20675562751434,True
+Dense4x20,1,mean relative,49.22244626102684,True
+Dense4x20,1,second place relative,22.172891846329385,True
+Dense4x20,3,independent,48.18694202449287,True
+Dense4x20,3,mean relative,63.86642916564285,True
+Dense4x20,3,second place relative,44.06015010361305,True
+Dense4x25,0,independent,36.99840137975591,True
+Dense4x25,0,mean relative,37.64540346572076,True
+Dense4x25,0,second place relative,23.065532527847534,True
+Dense4x25,1,independent,36.668558512097675,True
+Dense4x25,1,mean relative,44.98272866421335,True
+Dense4x25,1,second place relative,29.41119033699025,True
+Dense4x25,3,independent,56.834970949363154,True
+Dense4x25,3,mean relative,67.88110288042631,True
+Dense4x25,3,second place relative,41.166710891525085,True
+Dense5x20,0,independent,47.56884488889766,True
+Dense5x20,0,mean relative,48.98201944868424,True
+Dense5x20,0,second place relative,31.391171491569175,True
+Dense5x20,1,independent,47.97074175194098,True
+Dense5x20,1,mean relative,55.8736265752054,True
+Dense5x20,1,second place relative,35.59712082816766,True
+Dense5x20,3,independent,40.73254023745461,True
+Dense5x20,3,mean relative,48.58244095999573,True
+Dense5x20,3,second place relative,32.64560263873685,True
