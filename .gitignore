@@ -1,7 +1,5 @@
 .vscode
 _pycache_
 data/
-#networks/
-#results/
 *.pyc
 *.ilp
